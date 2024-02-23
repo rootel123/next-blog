@@ -10,6 +10,34 @@ interface PostLayoutProps {
 export const generateStaticParams = async () =>
   allPosts.map((post) => ({ slug: post._raw.flattenedPath }));
 
+export const generateMetadata = ({ params }: PostLayoutProps) => {
+  const post = allPosts.find((post) => post._raw.flattenedPath === params.slug);
+
+  if (!post) throw new Error(`Post Not found for slug: ${params.slug}`);
+
+  return {
+    title: post.title,
+    description: post.description,
+    openGraph: {
+      type: "website",
+      url: post.url,
+      title: post.title,
+      description: post.description,
+      images: [
+        post.thumbnail ? `/images/${post.thumbnail}` : "/images/nice.png",
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.description,
+      images: [
+        post.thumbnail ? `/images/${post.thumbnail}` : "/images/nice.png",
+      ],
+    },
+  };
+};
+
 const PostLayout: NextPage<PostLayoutProps> = ({ params }) => {
   const post = allPosts.find((post) => post._raw.flattenedPath === params.slug);
 
