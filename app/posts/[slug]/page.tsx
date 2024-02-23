@@ -29,7 +29,7 @@ const PostLayout: NextPage<PostLayoutProps> = ({ params }) => {
       )}
       <div className="text-center">
         <h2 className="text-4xl font-extrabold">{post.title}</h2>
-        <div className="text-right text-xl pt-8">
+        <div className="text-md pt-4 text-gray-600">
           <time dateTime={post.date}>
             {format(parseISO(post.date), "yyyy년 M월 d일")}
           </time>

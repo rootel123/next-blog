@@ -27,7 +27,10 @@ const PostCard: FC<PostCardProps> = ({ post }) => {
         <div className="ml-2 flex flex-col gap-4 mt-1">
           <h2 className="text-xl font-extrabold">{post.title}</h2>
           <div className="w-[540px] truncate">{post.description}</div>
-          <time dateTime={post.date} className="mt-4 text-sm text-right">
+          <time
+            dateTime={post.date}
+            className="mt-4 text-sm text-right text-gray-600"
+          >
             {format(parseISO(post.date), "yyyy년 M월 d일")}
           </time>
         </div>
